@@ -220,6 +220,10 @@ body {
   background: #31B380;
 }
 
+.btn-master:hover {
+  background: #31B380;
+}
+
 .story {
   font-weight: 600;
   font-size: 16px;
