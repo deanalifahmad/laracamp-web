@@ -34,29 +34,59 @@
                             @csrf
                             <div class="mb-4">
                                 <label class="form-label">Full Name</label>
-                                <input name="name" type="text" class="form-control" value="{{Auth::user()->name}}" required />
+                                <input name="name" type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" value="{{Auth::user()->name}}" required />
+                                @if ($errors->has('name'))
+                                    <div class="mx-2 my-2">
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="mb-4">
                                 <label class="form-label">Email Address</label>
-                                <input name="email" type="email" class="form-control" value="{{Auth::user()->email}}" required />
+                                <input name="email" type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" value="{{Auth::user()->email}}" required readonly />
+                                @if ($errors->has('email'))
+                                    <div class="mx-2 my-2">
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="mb-4">
                                 <label class="form-label">Occupation</label>
-                                <input name="occupation" type="text" class="form-control" value="{{Auth::user()->occupation}}" required />
+                                <input name="occupation" type="text" class="form-control {{$errors->has('occupation') ? 'is-invalid' : ''}}" value="{{old('occupation') ?: Auth::user()->occupation}}" required />
+                                @if ($errors->has('occupation'))
+                                    <div class="mx-2 my-2">
+                                        <span class="text-danger">{{ $errors->first('occupation') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="mb-4">
                                 <label class="form-label">Card Number</label>
-                                <input name="card_number" type="number" class="form-control" required />
+                                <input name="card_number" type="number" class="form-control {{$errors->has('card_number') ? 'is-invalid' : ''}}" value="{{old('card_number') ?: ''}}" required />
+                                @if ($errors->has('card_number'))
+                                    <div class="mx-2 my-2">
+                                        <span class="text-danger">{{ $errors->first('card_number') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="mb-5">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
                                         <label class="form-label">Expired</label>
-                                        <input name="expired" type="month" class="form-control" required />
+                                        <input name="expired" type="month" class="form-control {{$errors->has('expired') ? 'is-invalid' : ''}}" value="{{old('expired') ?: ''}}" required />
+                                        @if ($errors->has('expired'))
+                                            <div class="mx-2 my-2">
+                                                <span class="text-danger">{{ $errors->first('expired') }}</span>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <label class="form-label">CVC</label>
-                                        <input name="cvc" type="number" class="form-control" required maxlength="3" />
+                                        <input name="cvc" type="number" class="form-control {{$errors->has('cvc') ? 'is-invalid' : ''}}" value="{{old('cvc') ?: ''}}" maxlength="5" required />
+                                        @if ($errors->has('cvc'))
+                                            <div class="mx-2 my-2">
+                                                <span class="text-danger">{{ $errors->first('cvc') }}</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
